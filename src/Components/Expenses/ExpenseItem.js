@@ -4,9 +4,7 @@ import ExpenseDetails from './ExpenseDetails';
 import Card from '../UI/Card';
 
 const ExpenseItem =(props) => {
-    const clickHandler = () => {
-        console.log('Clicked')
-    }
+    
     
     return (
     <Card className='expense-item'>
@@ -16,7 +14,7 @@ const ExpenseItem =(props) => {
             expenseAmount = { props.expenseAmount }
             expenseLocation = { props.expenseLocation } 
         />
-        <button onClick={ clickHandler }>Change Title</button>
+        
     </Card>
     )
 }
