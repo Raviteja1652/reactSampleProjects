@@ -15,27 +15,37 @@ const Dummy_Data = [
 
 function App() {
   const [expenses, setExpenses] = useState(Dummy_Data)
+  
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => { return [expense, ...prevExpenses]})
   }
+  
   const [filteredYear, setFilteredYear] = useState('2020');
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear)
   }
+
+  const filteredExpenses = expenses.filter((expense) => (
+    expense.date.getFullYear().toString() === filteredYear
+  ))
+  
+  let expensesContent = <p className="no-expense-color"> -- No Expenses found! -- </p>
+  if(filteredExpenses.length > 0){
+    expensesContent = filteredExpenses.map((expense) => (
+      <ExpenseItem 
+        key={expense.id}
+        expenseTitle={expense.title}
+        expenseAmount={expense.amount}
+        expenseDate={expense.date}
+      />
+  ))};
 
   return (
     <div>
       <NewExpense onSubmittingExpense={addExpenseHandler} />
       <Card className="expenses">
         <ExpenseFilter selected={filteredYear} onChangeFilter={filterChangeHandler}/>
-        {expenses.map((expense) => (
-          <ExpenseItem 
-            key={expense.id}
-            expenseTitle={expense.title}
-            expenseAmount={expense.amount}
-            expenseDate={expense.date}
-          />
-        ))}
+        {expensesContent}
       </Card>
     </div>
   );
