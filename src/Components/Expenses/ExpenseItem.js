@@ -7,15 +7,15 @@ const ExpenseItem =(props) => {
     
     
     return (
-    <Card className='expense-item'>
-        <ExpenseDate expenseDate= { props.expenseDate }></ExpenseDate>
-        <ExpenseDetails 
-            expenseTitle = { props.expenseTitle }
-            expenseAmount = { props.expenseAmount }
-            expenseLocation = { props.expenseLocation } 
-        />
-        
-    </Card>
+        //<li>
+            <Card className='expense-item'>
+                <ExpenseDate expenseDate= { props.expenseDate }></ExpenseDate>
+                <ExpenseDetails 
+                    expenseTitle = { props.expenseTitle }
+                    expenseAmount = { props.expenseAmount }
+                />
+            </Card>
+        //</li>
     )
 }
 

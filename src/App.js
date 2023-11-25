@@ -1,15 +1,40 @@
-import ExpenseItem from "./Components/Expenses/ExpenseItem";
 import './Components/Expenses/ExpenseItem.css'
 import Card from "./Components/UI/Card";
 import NewExpense from "./Components/NewExpense/NewExpense";
 import ExpenseFilter from "./Components/Expenses/ExpenseFilter";
 import { useState } from "react";
+import ExpensesList from "./Components/Expenses/ExpensesList";
+import ExpensesChart from './Components/Expenses/ExpensesChart';
 const Dummy_Data = [
+  { 
+    id: 'e1', 
+    amount: 980,
+    title: 'Shoes',  
+    date: new Date(2022, 4, 16),
+  },
   { 
     id: 'e2', 
     amount: 799.49,
     title: 'New TV',  
     date: new Date(2021, 2, 12),
+  },
+  { 
+    id: 'e3', 
+    amount: 400,
+    title: 'Kitchen Accessories',  
+    date: new Date(2019, 6, 16),
+  },
+  { 
+    id: 'e4', 
+    amount: 700,
+    title: 'Powerbank',  
+    date: new Date(2022, 1, 23),
+  },
+  { 
+    id: 'e5', 
+    amount: 390,
+    title: 'Wooden Table',  
+    date: new Date(2022, 7, 19),
   },
 ];
 
@@ -29,23 +54,14 @@ function App() {
     expense.date.getFullYear().toString() === filteredYear
   ))
   
-  let expensesContent = <p className="no-expense-color"> -- No Expenses found! -- </p>
-  if(filteredExpenses.length > 0){
-    expensesContent = filteredExpenses.map((expense) => (
-      <ExpenseItem 
-        key={expense.id}
-        expenseTitle={expense.title}
-        expenseAmount={expense.amount}
-        expenseDate={expense.date}
-      />
-  ))};
 
   return (
     <div>
       <NewExpense onSubmittingExpense={addExpenseHandler} />
       <Card className="expenses">
         <ExpenseFilter selected={filteredYear} onChangeFilter={filterChangeHandler}/>
-        {expensesContent}
+        <ExpensesChart requiredExpenses={filteredExpenses}/>
+        <ExpensesList items={filteredExpenses} />
       </Card>
     </div>
   );

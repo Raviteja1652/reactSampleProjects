@@ -1,6 +1,6 @@
 import React from "react";
 import ExpenseItem from "./ExpenseItem";
-import './ExpensesList.css'
+import './ExpensesList.css';
 
 const ExpensesList = (props) => {
     let listOfExpenses = props.items.map((expense) => (
@@ -31,4 +31,4 @@ const ExpensesList = (props) => {
     )
 }
 
-export default ExpensesList
+export default ExpensesList;
